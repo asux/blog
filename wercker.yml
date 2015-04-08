@@ -32,4 +32,10 @@ build:
         # - script:
         #        name: rspec
         #        code: bundle exec rspec
-        - iansmith9876/pretty-slack-notify@0.0.8
+      after-steps:
+          - sherzberg/slack-notify:
+              subdomain: zazo
+              token: $SLACK_TOKEN
+              channel: "#dev"
+              username: wercker
+              icon_url: https://avatars3.githubusercontent.com/u/1695193?s=140
