@@ -1,0 +1,16 @@
+h1 Listing posts
+
+- @posts.each do |post|
+  h2 = link_to post.title, post
+  section
+    p.col-md-12 = post.content
+    p.col-md-12.well = post.author
+  section
+    .col-md-12
+      = link_to 'Show', post
+      '|
+      = link_to 'Edit', edit_post_path(post)
+      '|
+      = link_to 'Destroy', post, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+= link_to 'New Post', new_post_path, class: 'btn btn-defualt'

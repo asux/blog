@@ -5,9 +5,7 @@ gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'figaro'
 gem 'high_voltage'
-gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
-gem 'mysql2'
 gem 'mysql2'
 gem 'pry-rails'
 gem 'puma'
@@ -21,7 +19,8 @@ gem 'uglifier', '>= 1.3.0'
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
-  gem 'guard-rails'
+  gem 'guard-pow'
+  gem 'guard-rspec'
   gem 'guard-rspec'
   gem 'hub', require: nil
   gem 'quiet_assets'
@@ -47,4 +46,5 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
+  gem 'shoulda-matchers'
 end

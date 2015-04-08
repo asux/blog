@@ -108,9 +108,8 @@ GEM
       guard (~> 2.2)
       guard-compat (~> 1.1)
     guard-compat (1.2.1)
-    guard-rails (0.7.1)
-      guard (~> 2.11)
-      guard-compat (~> 1.0)
+    guard-pow (2.0.0)
+      guard (~> 2.0)
     guard-rspec (4.5.0)
       guard (~> 2.1)
       guard-compat (~> 1.1)
@@ -120,9 +119,6 @@ GEM
     hitimes (1.2.2)
     hub (1.12.4)
     i18n (0.7.0)
-    jbuilder (2.2.11)
-      activesupport (>= 3.0.0, < 5)
-      multi_json (~> 1.2)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -230,6 +226,8 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     shellany (0.0.1)
+    shoulda-matchers (2.8.0)
+      activesupport (>= 3.0.0)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -296,11 +294,10 @@ DEPENDENCIES
   faker
   figaro
   guard-bundler
-  guard-rails
+  guard-pow
   guard-rspec
   high_voltage
   hub
-  jbuilder (~> 2.0)
   jquery-rails
   launchy
   mysql2
@@ -315,6 +312,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
+  shoulda-matchers
   simple_form
   simplecov
   slim-rails
