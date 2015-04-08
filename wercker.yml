@@ -32,10 +32,10 @@ build:
         # - script:
         #        name: rspec
         #        code: bundle exec rspec
-    after-steps:
-        - sherzberg/slack-notify:
-            subdomain: zazo
-            token: xoxp-3843836216-3843889308-4377774985-3be509
-            channel: "#dev"
-            username: wercker
-            icon_url: https://avatars3.githubusercontent.com/u/1695193?s=140
+    # after-steps:
+    #     - sherzberg/slack-notify:
+    #         subdomain: zazo
+    #         token: xoxp-3843836216-3843889308-4377774985-3be509
+    #         channel: "#dev"
+    #         username: wercker
+    #         icon_url: https://avatars3.githubusercontent.com/u/1695193?s=140
