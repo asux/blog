@@ -1,4 +1,4 @@
-box: wercker/ubuntu12.04-ruby2.0.0
+box: wercker/rvm
 # Build definition
 # See the Rails section on the wercker devcenter:
 # http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html
@@ -10,8 +10,8 @@ services:
 build:
     steps:
         # Uncomment this to force RVM to use a specific Ruby version
-        - rvm-use:
-              version: 2.1.5
+        # - rvm-use:
+              # version: 2.1.5
 
         # A step that executes `bundle install` command
         - bundle-install
