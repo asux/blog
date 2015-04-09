@@ -2,21 +2,23 @@
 ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 
-output_dir = if ENV.key?('SHIPPABLE_OUTPUT_DIR')
-               ENV['SHIPPABLE_OUTPUT_DIR']
+reports_dir = if ENV.key?('SHIPPABLE_TEST_REPORTS')
+               ENV['SHIPPABLE_TEST_REPORTS']
              elsif ENV.key?('CIRCLE_TEST_REPORTS')
                ENV['CIRCLE_TEST_REPORTS']
              elsif ENV.key?('WERCKER_OUTPUT_DIR')
-               ENV['WERCKER_OUTPUT_DIR']
+               ENV['WERCKER_REPORT_ARTIFACTS_DIR']
              else
                File.expand_path('../tmp', __FILE__)
              end
 
 if ENV.key?('coverage') || ENV.key?('CI')
   require 'simplecov'
-  # require 'simplecov-csv'
-  # SimpleCov.formatter = SimpleCov::Formatter::CSVFormatter
-  SimpleCov.coverage_dir File.join(output_dir, 'coverage')
+  if ENV['SHIPPABLE']
+    require 'simplecov-csv'
+    SimpleCov.formatter = SimpleCov::Formatter::CSVFormatter
+  end
+  SimpleCov.coverage_dir File.join(reports_dir, 'coverage')
   SimpleCov.start :rails
 end
 
@@ -69,6 +71,6 @@ RSpec.configure do |config|
 
   if ENV.key?('CI')
     require 'rspec_junit_formatter'
-    config.add_formatter RSpecJUnitFormatter, File.join(output_dir, 'rspec.xml')
+    config.add_formatter RSpecJUnitFormatter, File.join(reports_dir, 'rspec', 'rspec.xml')
   end
 end
