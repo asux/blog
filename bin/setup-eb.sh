@@ -11,7 +11,7 @@ EOF
 fi
 
 # setup EB CLI
-eb --version || (pip install awsebcli && eb --version)
+eb --version || (sudo pip install awsebcli && eb --version)
 [ -d .elasticbeanstalk ] || mkdir -p .elasticbeanstalk
 [ -f .elasticbeanstalk/config ] || eb init $EB_APP --profile default --region $AWS_REGION --platform "$EB_PLATFORM"
 
