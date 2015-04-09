@@ -33,7 +33,7 @@ build:
         code: mkdir -p $WERCKER_REPORT_ARTIFACTS_DIR/rspec $WERCKER_REPORT_ARTIFACTS_DIR/coverage
     - script:
         name: rspec
-        code: bundle exec rake spec
+        code: bundle exec spec
   after-steps:
     - slack-notifier:
         subdomain: zazo
