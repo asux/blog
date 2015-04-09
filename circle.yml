@@ -1,6 +1,6 @@
 dependencies:
   pre:
-    - pip install awscli
+    - sudo pip install awscli
   cache_directories:
     - vendor/bundler
 deployment:

@@ -3,7 +3,7 @@ ruby '2.2.0'
 
 gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'figaro'
+gem 'figaro', github: 'asux/figaro', branch: 'feature/eb-set-command'
 gem 'high_voltage'
 gem 'jquery-rails'
 gem 'mysql2'
