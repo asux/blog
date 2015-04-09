@@ -4,14 +4,14 @@ services:
 rvm:
   - 2.2.0
 env:
-  - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
+  - SHIPPABLE_OUTPUT_DIR=shippable
   - db_host=localhost db_name=blog_test db_username=shippable db_password=shippable
 notifications:
   email:
     - a.ulianytskyi@gmail.com
 # ensure the test output and coverage dirs are created
 before_script:
-  - mkdir -p shippable/testresults
+  - mkdir -p shippable/rspec shippable/coverage
 # write the rspec tests to the output dir
 script:
-  - bundle exec rspec -f JUnit -o shippable/testresults/results.xml
+  - bundle exec rake spec

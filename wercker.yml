@@ -28,7 +28,9 @@ build:
                 echo "from location $(which ruby)"
                 echo -p "gem list: $(gem list)"
 
-        # Add more steps here:
+        - script:
+               name: create coverage dir
+               code: mkdir -p $WERCKER_OUTPUT_DIR/coverage
         - script:
                name: rspec
                code: bundle exec rspec
@@ -38,5 +40,3 @@ build:
             url: $SLACK_URL
             channel: dev
             username: wercker
-            icon_url: https://avatars3.githubusercontent.com/u/1695193?s=140
-            notify_on: all
