@@ -50,7 +50,7 @@ deploy:
         code: sudo pip install awsebcli
     - script:
         name: eb init
-        code: eb init '$EB_APP' --region '$AWS_REGION' --platform '$EB_PLATFORM'
+        code: eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM"
     - script:
         name: deploy to AWS Elasticbeanstalk
         code: eb deploy $EB_ENV
