@@ -8,6 +8,8 @@ output_dir = if ENV.key?('SHIPPABLE_OUTPUT_DIR')
                ENV['CIRCLE_TEST_REPORTS']
              elsif ENV.key?('WERCKER_OUTPUT_DIR')
                ENV['WERCKER_OUTPUT_DIR']
+             else
+               File.expand_path('../tmp', __FILE__)
              end
 
 if ENV.key?('coverage') || ENV.key?('CI')

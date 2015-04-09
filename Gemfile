@@ -36,7 +36,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
-  gem 'rspec_junit_formatter', github: 'circleci/rspec_junit_formatter', reuquire: false
+  gem 'rspec_junit_formatter', github: 'circleci/rspec_junit_formatter',
+                               require: false
 end
 
 group :test do
