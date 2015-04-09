@@ -1,8 +1,6 @@
 dependencies:
   pre:
-    - sudo pip install awscli
-  cache_directories:
-    - vendor/bundler
+    - sudo pip install awsebcli
 deployment:
   elasticbeanstalk:
     branch: master
