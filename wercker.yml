@@ -29,11 +29,11 @@ build:
                 echo -p "gem list: $(gem list)"
 
         - script:
-               name: create coverage dir
-               code: mkdir -p $WERCKER_OUTPUT_DIR/coverage
+               name: create rspec and coverage dir
+               code: mkdir -p $WERCKER_REPORT_ARTIFACTS_DIR/rspec $WERCKER_REPORT_ARTIFACTS_DIR/coverage
         - script:
                name: rspec
-               code: bundle exec rspec
+               code: bundle exec rake rspec
     after-steps:
         - slack-notifier:
             subdomain: zazo
