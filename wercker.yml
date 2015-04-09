@@ -22,35 +22,35 @@ build:
     # A custom script step, name value is used in the UI
     # and the code value contains the command that get executed
     - script:
-      name: echo ruby information
-      code: |
-        echo "ruby version $(ruby --version) running"
-        echo "from location $(which ruby)"
-        echo -p "gem list: $(gem list)"
+        name: echo ruby information
+        code: |
+          echo "ruby version $(ruby --version) running"
+          echo "from location $(which ruby)"
+          echo -p "gem list: $(gem list)"
 
     - script:
-         name: create rspec and coverage dir
-         code: mkdir -p $WERCKER_REPORT_ARTIFACTS_DIR/rspec $WERCKER_REPORT_ARTIFACTS_DIR/coverage
+        name: create rspec and coverage dir
+        code: mkdir -p $WERCKER_REPORT_ARTIFACTS_DIR/rspec $WERCKER_REPORT_ARTIFACTS_DIR/coverage
     - script:
-         name: rspec
-         code: bundle exec rake spec
+        name: rspec
+        code: bundle exec rake spec
   after-steps:
     - slack-notifier:
-      subdomain: zazo
-      url: $SLACK_URL
-      channel: dev
-      username: wercker
+        subdomain: zazo
+        url: $SLACK_URL
+        channel: dev
+        username: wercker
 deploy:
   steps:
     - script:
-      name: setup git
-      code: bin/setup-git.sh
+        name: setup git
+        code: bin/setup-git.sh
     - script:
-      name: setup AWS credentials
-      code: bin/setup-aws-credentials.sh
+        name: setup AWS credentials
+        code: bin/setup-aws-credentials.sh
     - script:
-      name: setup EB CLI
-      code: bin/setup-eb.sh
+        name: setup EB CLI
+        code: bin/setup-eb.sh
     - script:
-      name: deploy to AWS Elasticbeanstalk
-      code: bin/deploy.sh
+        name: deploy to AWS Elasticbeanstalk
+        code: bin/deploy.sh
