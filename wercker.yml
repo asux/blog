@@ -8,49 +8,49 @@ services:
 # See more about services on our devcenter:
 # http://devcenter.wercker.com/articles/services/
 build:
-    steps:
-        # Uncomment this to force RVM to use a specific Ruby version
-        # - rvm-use:
-              # version: 2.1.5
+  steps:
+    # Uncomment this to force RVM to use a specific Ruby version
+    # - rvm-use:
+        # version: 2.1.5
 
-        # A step that executes `bundle install` command
-        - bundle-install
+    # A step that executes `bundle install` command
+    - bundle-install
 
-        # A step that prepares the database.yml using the database in services
-        - rails-database-yml
+    # A step that prepares the database.yml using the database in services
+    - rails-database-yml
 
-        # A custom script step, name value is used in the UI
-        # and the code value contains the command that get executed
-        - script:
-            name: echo ruby information
-            code: |
-                echo "ruby version $(ruby --version) running"
-                echo "from location $(which ruby)"
-                echo -p "gem list: $(gem list)"
+    # A custom script step, name value is used in the UI
+    # and the code value contains the command that get executed
+    - script:
+      name: echo ruby information
+      code: |
+        echo "ruby version $(ruby --version) running"
+        echo "from location $(which ruby)"
+        echo -p "gem list: $(gem list)"
 
-        - script:
-               name: create rspec and coverage dir
-               code: mkdir -p $WERCKER_REPORT_ARTIFACTS_DIR/rspec $WERCKER_REPORT_ARTIFACTS_DIR/coverage
-        - script:
-               name: rspec
-               code: bundle exec rake spec
-    after-steps:
-        - slack-notifier:
-            subdomain: zazo
-            url: $SLACK_URL
-            channel: dev
-            username: wercker
+    - script:
+         name: create rspec and coverage dir
+         code: mkdir -p $WERCKER_REPORT_ARTIFACTS_DIR/rspec $WERCKER_REPORT_ARTIFACTS_DIR/coverage
+    - script:
+         name: rspec
+         code: bundle exec rake spec
+  after-steps:
+    - slack-notifier:
+      subdomain: zazo
+      url: $SLACK_URL
+      channel: dev
+      username: wercker
 deploy:
-    steps:
-        - script:
-            name: setup git
-            code: bin/setup-git.sh
-        - script:
-            name: setup AWS credentials
-            code: bin/setup-aws-credentials.sh
-        - script:
-            name: setup EB CLI
-            code: bin/setup-eb.sh
-        - script:
-            name: deploy to AWS Elasticbeanstalk
-            code: bin/deploy.sh
+  steps:
+    - script:
+      name: setup git
+      code: bin/setup-git.sh
+    - script:
+      name: setup AWS credentials
+      code: bin/setup-aws-credentials.sh
+    - script:
+      name: setup EB CLI
+      code: bin/setup-eb.sh
+    - script:
+      name: deploy to AWS Elasticbeanstalk
+      code: bin/deploy.sh
