@@ -1,8 +1,11 @@
 language: ruby
+services:
+  - mysql
 rvm:
-  - 2.2.1
+  - 2.2.0
 env:
   - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
+  - db_host=localhost db_name=blog_test db_username=shippable db_password=shippable
 notifications:
   email:
     - a.ulianytskyi@gmail.com
