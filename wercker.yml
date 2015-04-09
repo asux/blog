@@ -43,14 +43,14 @@ build:
 deploy:
   steps:
     - script:
-        name: setup git
-        code: bin/setup-git.sh
-    - script:
         name: setup AWS credentials
         code: bin/setup-aws-credentials.sh
     - script:
-        name: setup EB CLI
-        code: bin/setup-eb.sh
+        name: install EB CLI
+        code: sudo pip install awsebcli
+    - script:
+        name: eb init
+        code: eb init '$EB_APP' --region '$AWS_REGION' --platform '$EB_PLATFORM'
     - script:
         name: deploy to AWS Elasticbeanstalk
-        code: bin/deploy.sh
+        code: eb deploy $EB_ENV

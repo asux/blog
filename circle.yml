@@ -7,7 +7,6 @@ deployment:
   elasticbeanstalk:
     branch: master
     commands:
-      - bin/setup-git.sh
       - bin/setup-aws-credentials.sh
-      - bin/setup-eb.sh
-      - bin/deploy.sh
+      - eb init '$EB_APP' --region '$AWS_REGION' --platform '$EB_PLATFORM'
+      - eb deploy $EB_ENV
