@@ -2,11 +2,23 @@
 ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 
-if ENV.key?('coverage') || ENV.key?('CI') || ENV.key?('COVERAGE_REPORTS')
+reports_dir = if ENV.key?('SHIPPABLE_TEST_REPORTS')
+               ENV['SHIPPABLE_TEST_REPORTS']
+             elsif ENV.key?('CIRCLE_TEST_REPORTS')
+               ENV['CIRCLE_TEST_REPORTS']
+             elsif ENV.key?('WERCKER_OUTPUT_DIR')
+               ENV['WERCKER_REPORT_ARTIFACTS_DIR']
+             else
+               File.expand_path('../../tmp', __FILE__)
+             end
+
+if ENV.key?('coverage') || ENV.key?('CI')
   require 'simplecov'
-  require 'simplecov-csv'
-  SimpleCov.formatter = SimpleCov::Formatter::CSVFormatter
-  SimpleCov.coverage_dir(ENV['COVERAGE_REPORTS'])
+  if ENV['SHIPPABLE']
+    require 'simplecov-csv'
+    SimpleCov.formatter = SimpleCov::Formatter::CSVFormatter
+  end
+  SimpleCov.coverage_dir File.join(reports_dir, 'coverage')
   SimpleCov.start :rails
 end
 
@@ -56,4 +68,10 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  if ENV.key?('CI')
+    require 'rspec_junit_formatter'
+    config.add_formatter RSpecJUnitFormatter, File.join(reports_dir, 'rspec', 'rspec.xml')
+    config.add_formatter :html, File.join(reports_dir, 'rspec', 'rspec.html')
+  end
 end

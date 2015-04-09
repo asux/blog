@@ -3,7 +3,7 @@ ruby '2.2.0'
 
 gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'figaro'
+gem 'figaro', github: 'asux/figaro', branch: 'feature/eb-set-command'
 gem 'high_voltage'
 gem 'jquery-rails'
 gem 'mysql2'
@@ -15,7 +15,6 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
-
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
@@ -37,6 +36,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'rspec_junit_formatter', github: 'circleci/rspec_junit_formatter',
+                               require: false
 end
 
 group :test do
