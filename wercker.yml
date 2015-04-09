@@ -46,5 +46,5 @@ deploy:
             name: setup EB CLI
             code: bin/setup-eb.sh
         - script:
-            name: deploy to Elasticbeanstalk $EB_APP -> $EB_ENV
+            name: deploy to AWS Elasticbeanstalk
             code: bin/deploy.sh
