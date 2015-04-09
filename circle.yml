@@ -2,4 +2,4 @@ deployment:
     production:
     branch: master
     commands:
-      - bin/setup-eb.sh && bin/deploy.sh
+        - bin/setup-eb.sh && bin/deploy.sh
