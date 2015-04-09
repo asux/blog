@@ -9,7 +9,7 @@ reports_dir = if ENV.key?('SHIPPABLE_TEST_REPORTS')
              elsif ENV.key?('WERCKER_OUTPUT_DIR')
                ENV['WERCKER_REPORT_ARTIFACTS_DIR']
              else
-               File.expand_path('../tmp', __FILE__)
+               File.expand_path('../../tmp', __FILE__)
              end
 
 if ENV.key?('coverage') || ENV.key?('CI')
@@ -72,5 +72,6 @@ RSpec.configure do |config|
   if ENV.key?('CI')
     require 'rspec_junit_formatter'
     config.add_formatter RSpecJUnitFormatter, File.join(reports_dir, 'rspec', 'rspec.xml')
+    config.add_formatter :html, File.join(reports_dir, 'rspec', 'rspec.html')
   end
 end
