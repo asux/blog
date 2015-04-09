@@ -40,3 +40,11 @@ build:
             url: $SLACK_URL
             channel: dev
             username: wercker
+deploy:
+    steps:
+        - script:
+            name: setup EB CLI
+            code: bin/setup-eb.sh
+        - script:
+            name: deploy to Elasticbeanstalk $EB_APP -> $EB_ENV
+            code: bin/deploy.sh
