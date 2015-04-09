@@ -5,7 +5,7 @@ dependencies:
     - vendor/bundler
 deployment:
   elasticbeanstalk:
-    branch: /.+/
+    branch: master
     commands:
       - bin/setup-git.sh
       - bin/setup-aws-credentials.sh
