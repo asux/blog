@@ -43,6 +43,12 @@ build:
 deploy:
     steps:
         - script:
+            name: setup git
+            code: bin/setup-git.sh
+        - script:
+            name: setup AWS credentials
+            code: bin/setup-aws-credentials.sh
+        - script:
             name: setup EB CLI
             code: bin/setup-eb.sh
         - script:
