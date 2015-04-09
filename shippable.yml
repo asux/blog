@@ -4,7 +4,7 @@ services:
 rvm:
   - 2.2.0
 env:
-  - SHIPPABLE_OUTPUT_DIR=shippable
+  - SHIPPABLE_OUTPUT_DIR=shippable CI_REPORTS=shippable/rspec COVERAGE_REPORTS=shippable/coverage
   - db_host=localhost db_name=blog_test db_username=shippable db_password=shippable
 notifications:
   email:
