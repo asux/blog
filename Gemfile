@@ -21,7 +21,6 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-pow'
   gem 'guard-rspec'
-  gem 'guard-rspec'
   gem 'hub', require: nil
   gem 'quiet_assets'
   gem 'rails_layout'
@@ -46,5 +45,6 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
+  gem 'simplecov-csv', require: false
   gem 'shoulda-matchers'
 end

@@ -2,8 +2,11 @@
 ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 
-if ENV.key?('coverage')
+if ENV.key?('coverage') || ENV.key?('CI') || ENV.key?('COVERAGE_REPORTS')
   require 'simplecov'
+  require 'simplecov-csv'
+  SimpleCov.formatter = SimpleCov::Formatter::CSVFormatter
+  SimpleCov.coverage_dir(ENV['COVERAGE_REPORTS'])
   SimpleCov.start :rails
 end
 
