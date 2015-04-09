@@ -1,9 +1,13 @@
 dependencies:
-    cache_directories:
-        - vendor/bundler
+  pre:
+    - pip install awscli
+  cache_directories:
+    - vendor/bundler
 deployment:
-    production:
-        branch: master
-        commands:
-            - bin/setup-eb.sh
-            - bin/deploy.sh
+  elasticbeanstalk:
+    branch: /.+/
+    commands:
+      - bin/setup-git.sh
+      - bin/setup-aws-credentials.sh
+      - bin/setup-eb.sh
+      - bin/deploy.sh
