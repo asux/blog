@@ -13,7 +13,11 @@ fi
 # setup EB CLI
 eb --version || (sudo pip install awsebcli && eb --version)
 [ -d .elasticbeanstalk ] || mkdir -p .elasticbeanstalk
-[ -f .elasticbeanstalk/config ] || eb init $EB_APP --profile default --region $AWS_REGION --platform "$EB_PLATFORM"
+if [ ! -f .elasticbeanstalk/config.yml ]; then
+  eb_init_cmd="eb init '$EB_APP' --profile 'default' --region '$AWS_REGION' --platform '$EB_PLATFORM'"
+  echo $eb_init_cmd
+  $eb_init_cmd
+fi
 
 # show EB env status
 eb status
