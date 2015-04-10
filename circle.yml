@@ -2,9 +2,9 @@ dependencies:
   pre:
     - sudo pip install awsebcli
 deployment:
+  pre:
+    - eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM"    
   elasticbeanstalk:
     branch: master
     commands:
-      - bin/setup-aws-credentials.sh
-      - eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM"
       - eb deploy $EB_ENV
