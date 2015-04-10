@@ -3,6 +3,7 @@ dependencies:
     - sudo pip install awsebcli
 deployment:
   elasticbeanstalk:
+    branch: /.*/
     commands:
       - eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM" --verbose
       - cat .elasticbeanstalk/config.yml
