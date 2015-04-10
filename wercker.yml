@@ -42,12 +42,20 @@ build:
         username: wercker
 deploy:
   steps:
+    - pip-install:
+        packages_list: awsebcli
     - script:
         name: setup AWS credentials
-        code: bin/setup-aws-credentials.sh
-    - script:
-        name: install EB CLI
-        code: sudo pip install awsebcli
+        code: |
+          if [ ! -f ~/.aws/credentials ]; then
+            echo "Creating ~/.aws/credentials"
+            mkdir -p ~/.aws
+            cat <<-EOF > ~/.aws/credentials
+          [default]
+          aws_access_key_id = $AWS_ACCESS_KEY_ID
+          aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
+          EOF
+          fi
     - script:
         name: eb init
         code: |
@@ -58,3 +66,11 @@ deploy:
         code: |
           echo "Deploying to EB environment: $EB_ENV"
           eb deploy "$EB_ENV"
+  after-steps:
+    - akelmanson/rollbar-notify:
+        access-token: $ROLLBAR_ACCESS_TOKEN
+    - slack-notifier:
+        subdomain: zazo
+        url: $SLACK_URL
+        channel: dev
+        username: wercker
