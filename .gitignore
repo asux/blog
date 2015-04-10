@@ -85,3 +85,10 @@ pickle-email-*.html
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+
+# wercker local builds
+_projects/
+_steps/
+_builds/
+_containers/
