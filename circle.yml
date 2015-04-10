@@ -2,11 +2,10 @@ dependencies:
   pre:
     - sudo pip install awsebcli
 deployment:
-  pre:
-    elasticbeanstalk:
-      commands:
-        - eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM"
-        - cat .elasticbeanstalk/config.yml
+  elasticbeanstalk:
+    commands:
+      - eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM" --verbose
+      - cat .elasticbeanstalk/config.yml
   production:
     branch: /^(master|release\/|hotfix\/)/
     commands:

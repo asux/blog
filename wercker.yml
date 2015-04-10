@@ -51,7 +51,7 @@ deploy:
     - script:
         name: eb init
         code: |
-          eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM"
+          eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM" --verbose
           cat .elasticbeanstalk/config.yml
     - script:
         name: deploy to AWS Elasticbeanstalk
