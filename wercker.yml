@@ -47,16 +47,7 @@ deploy:
         requirements_file: ''
     - script:
         name: setup AWS credentials
-        code: |
-          if [ ! -f ~/.aws/credentials ]; then
-            echo "Creating ~/.aws/credentials"
-            mkdir -p ~/.aws
-            cat <<-EOF > ~/.aws/credentials
-          [default]
-          aws_access_key_id = $AWS_ACCESS_KEY_ID
-          aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
-          EOF
-          fi
+        code: bin/setup-aws-credentials.sh
     - script:
         name: eb init
         code: |
