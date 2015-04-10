@@ -4,8 +4,16 @@ dependencies:
 deployment:
   pre:
     elasticbeanstalk:
-      - eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM"    
-  elasticbeanstalk:
-    branch: master
+      commands:
+        - eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM"
+        - cat .elasticbeanstalk/config.yml
+  production:
+    branch: /^(master|release\/|hotfix\/)/
     commands:
-      - eb deploy $EB_ENV
+      - echo "Deploying to EB environment: $EB_APP-production"
+      - eb deploy "$EB_APP-production"
+  staging:
+    branch: /^(develop|feature\/)/
+    commands:
+      - echo "Deploying to $EB_APP-staging"
+      - eb deploy "$EB_APP-staging"
