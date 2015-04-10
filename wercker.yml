@@ -44,6 +44,7 @@ deploy:
   steps:
     - pip-install:
         packages_list: awsebcli
+        requirements_file: ''
     - script:
         name: setup AWS credentials
         code: |
