@@ -2,18 +2,17 @@ dependencies:
   pre:
     - sudo pip install awsebcli
 deployment:
-  elasticbeanstalk:
-    branch: /.*/
-    commands:
-      - eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM" --verbose
-      - cat .elasticbeanstalk/config.yml
   production:
     branch: /^(master|release\/|hotfix\/)/
     commands:
+      - eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM" --verbose
+      - cat .elasticbeanstalk/config.yml
       - echo "Deploying to EB environment: $EB_APP-production"
       - eb deploy "$EB_APP-production"
   staging:
     branch: /^(develop|feature\/)/
     commands:
+      - eb init $EB_APP --region $AWS_REGION --platform "$EB_PLATFORM" --verbose
+      - cat .elasticbeanstalk/config.yml
       - echo "Deploying to $EB_APP-staging"
       - eb deploy "$EB_APP-staging"
